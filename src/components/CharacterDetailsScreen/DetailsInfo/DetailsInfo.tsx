@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {Image, Text, View} from 'react-native';
 import styles from './DetailsInfoStyles';
 
 interface DetailsInfoProps {
   name: string;
   image: string;
-  statusIcon: any;
+  statusIcon: ReactNode;
   status: string;
   gender: string;
   episodes: number;

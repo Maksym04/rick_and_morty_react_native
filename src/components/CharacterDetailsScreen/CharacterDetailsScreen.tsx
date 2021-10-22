@@ -1,4 +1,4 @@
-import React, {ReactElement} from 'react';
+import React, {ReactNode} from 'react';
 import {View, Text, ScrollView, TouchableHighlight} from 'react-native';
 import {CharacterDetailsProps} from './../../../App';
 import DetailsInfo from './DetailsInfo/DetailsInfo';
@@ -10,7 +10,7 @@ const CharacterDetailsScreen: React.FC<CharacterDetailsProps> = ({
 }) => {
   const {character} = route.params;
 
-  const statusIcon = (): ReactElement => {
+  const statusIcon = (): ReactNode => {
     if (character.status === 'Dead') {
       return <View style={styles.redCirle} />;
     } else if (character.status === 'unknown') {

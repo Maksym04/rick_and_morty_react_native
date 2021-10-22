@@ -6,8 +6,8 @@ interface ButtonsProps {
   setFirstPage: () => void;
   setNextPage: () => void;
   setPrevPage: () => void;
-  showValueNextPage: any;
-  showValuePrevPage: any;
+  showValueNextPage: number;
+  showValuePrevPage: number | string;
 }
 
 const Buttons: React.FC<ButtonsProps> = ({

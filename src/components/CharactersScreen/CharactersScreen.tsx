@@ -3,7 +3,7 @@ import React, {
   useEffect,
   useCallback,
   useMemo,
-  ReactElement,
+  ReactNode,
 } from 'react';
 import {View, TouchableOpacity, FlatList} from 'react-native';
 import {getCharacters} from '../../api/api';
@@ -13,9 +13,10 @@ import Buttons from './Buttons/Buttons';
 import Loading from './../Loading/Loading';
 import Error from './../Error/Error';
 import styles from './CharactersScreenStyles';
+import {AxiosGetType} from './../../api/api';
 
 const CharactersScreen = ({navigation}: CharactersScreenProps) => {
-  const [characters, setCharacters] = useState<(string | number)[]>([]);
+  const [characters, setCharacters] = useState<AxiosGetType[]>([]);
   const [page, setPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
@@ -23,7 +24,7 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
   const load = useCallback(() => {
     setIsLoading(true);
     getCharacters(page)
-      .then(data => {
+      .then((data: any) => {
         setCharacters(data);
       })
       .catch(error => {
@@ -38,7 +39,7 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
     load();
   }, [load, page]);
 
-  const statusIcon = (item: any): ReactElement => {
+  const statusIcon = (item: any): ReactNode => {
     if (item.status === 'Alive') {
       return <View style={styles.greenCirle} />;
     } else if (item.status === 'unknown') {

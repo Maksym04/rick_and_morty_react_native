@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {Image, Text, View} from 'react-native';
 import styles from './InitialInfoStyles';
 
 interface InitialInfoProps {
   image: string;
   name: string;
-  statusIcon: any;
+  statusIcon: ReactNode;
   status: string;
   species: string;
   location: string;

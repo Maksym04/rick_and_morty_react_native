@@ -3,9 +3,9 @@ import {Text, TouchableHighlight, View} from 'react-native';
 import styles from './ButtonsStyles';
 
 interface ButtonsProps {
-  setFirstPage: any;
-  setNextPage: any;
-  setPrevPage: any;
+  setFirstPage: () => void;
+  setNextPage: () => void;
+  setPrevPage: () => void;
   showValueNextPage: any;
   showValuePrevPage: any;
 }

@@ -1,17 +1,20 @@
-import React, {useState, useEffect, useCallback, useMemo} from 'react';
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+  ReactElement,
+} from 'react';
 import {View, TouchableOpacity, FlatList} from 'react-native';
 import {getCharacters} from '../../api/api';
+import {CharactersScreenProps} from './../../../App';
 import InitialInfo from './InitialInfo/InitialInfo';
 import Buttons from './Buttons/Buttons';
 import Loading from './../Loading/Loading';
 import Error from './../Error/Error';
 import styles from './CharactersScreenStyles';
 
-interface CharactersScreenProps {
-  navigation: any;
-}
-
-const CharactersScreen: React.FC<CharactersScreenProps> = ({navigation}) => {
+const CharactersScreen = ({navigation}: CharactersScreenProps) => {
   const [characters, setCharacters] = useState<(string | number)[]>([]);
   const [page, setPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -35,7 +38,7 @@ const CharactersScreen: React.FC<CharactersScreenProps> = ({navigation}) => {
     load();
   }, [load, page]);
 
-  const statusIcon = (item: any) => {
+  const statusIcon = (item: any): ReactElement => {
     if (item.status === 'Alive') {
       return <View style={styles.greenCirle} />;
     } else if (item.status === 'unknown') {
@@ -45,17 +48,17 @@ const CharactersScreen: React.FC<CharactersScreenProps> = ({navigation}) => {
     }
   };
 
-  const setFirstPage = useCallback(() => {
+  const setFirstPage = useCallback((): void => {
     setPage(1);
   }, [page]);
 
-  const setPrevPage = useCallback(() => {
+  const setPrevPage = useCallback((): void => {
     if (page > 1) {
       setPage(page - 1);
     }
   }, [page]);
 
-  const setNextPage = useCallback(() => {
+  const setNextPage = useCallback((): void => {
     if (page < 34) {
       setPage(page + 1);
     } else {
@@ -63,7 +66,7 @@ const CharactersScreen: React.FC<CharactersScreenProps> = ({navigation}) => {
     }
   }, [page]);
 
-  const showValuePrevPage = useMemo(() => {
+  const showValuePrevPage = useMemo((): number | string => {
     if (page > 1) {
       const pageValue = page - 1;
       return pageValue;
@@ -72,7 +75,7 @@ const CharactersScreen: React.FC<CharactersScreenProps> = ({navigation}) => {
     }
   }, [page]);
 
-  const showValueNextPage = useMemo(() => {
+  const showValueNextPage = useMemo((): number => {
     if (page < 34) {
       const pageValue = page + 1;
       return pageValue;
@@ -94,7 +97,7 @@ const CharactersScreen: React.FC<CharactersScreenProps> = ({navigation}) => {
                 <TouchableOpacity
                   style={styles.characterBlock}
                   onPress={() => {
-                    navigation.navigate('Character', {
+                    navigation.navigate('CharacterDetails', {
                       character: item,
                     });
                   }}>

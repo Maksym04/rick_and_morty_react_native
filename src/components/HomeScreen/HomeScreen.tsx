@@ -1,19 +1,20 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {View, Text, TouchableHighlight, Image} from 'react-native';
+import {HomeScreenProps} from './../../../App';
 import styles from './HomeScreenStyles';
 
-interface HomeScreenProps {
-  navigation: any;
-}
-
 const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
-  const rickAndMortyImage = {
+  type RickAndMortyImageUri = {
+    uri: string;
+  };
+
+  const rickAndMortyImage: RickAndMortyImageUri = {
     uri: 'https://i.ebayimg.com/images/g/-4wAAOSweI1cPBNA/s-l300.jpg',
   };
 
-  const showCharacters = useCallback(() => {
+  const showCharacters = (): void => {
     navigation.navigate('Characters');
-  }, []);
+  };
 
   return (
     <View style={styles.container}>

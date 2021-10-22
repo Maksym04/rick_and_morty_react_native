@@ -2,9 +2,9 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#272B38',
-    justifyContent: 'center',
     flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#272B38',
   },
   charactersBlock: {
     flex: 1,

@@ -1,20 +1,16 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import {View, Text, ScrollView, TouchableHighlight} from 'react-native';
+import {CharacterDetailsProps} from './../../../App';
 import DetailsInfo from './DetailsInfo/DetailsInfo';
 import styles from './CharacterDetailsScreenStyles';
 
-interface CharacterDetailsScreenProps {
-  route: any;
-  navigation: any;
-}
-
-const CharacterDetailsScreen: React.FC<CharacterDetailsScreenProps> = ({
+const CharacterDetailsScreen: React.FC<CharacterDetailsProps> = ({
   route,
   navigation,
 }) => {
   const {character} = route.params;
 
-  const statusIcon = () => {
+  const statusIcon = (): ReactElement => {
     if (character.status === 'Dead') {
       return <View style={styles.redCirle} />;
     } else if (character.status === 'unknown') {

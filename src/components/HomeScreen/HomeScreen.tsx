@@ -1,27 +1,29 @@
 import React from 'react';
 import {View, Text, TouchableHighlight, Image} from 'react-native';
-import {HomeScreenProps} from './../../../App';
-import styles from './HomeScreenStyles';
+import {HomeScreenProps} from './../../types/types';
+import {ids, styles} from './HomeScreenStyles';
 
 const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
-  type RickAndMortyImageUri = {
-    uri: string;
-  };
-
-  const rickAndMortyImage: RickAndMortyImageUri = {
-    uri: 'https://i.ebayimg.com/images/g/-4wAAOSweI1cPBNA/s-l300.jpg',
-  };
-
   const showCharacters = (): void => {
     navigation.navigate('Characters');
   };
 
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={rickAndMortyImage} />
-      <Text style={styles.text}>Rick and Morty</Text>
-      <TouchableHighlight style={styles.button} onPress={showCharacters}>
-        <Text style={styles.buttonText}>Characters</Text>
+      <Image
+        style={styles.image}
+        source={require('./../../images/background_image.jpg')}
+      />
+      <Text style={styles.text} data-media={ids.text}>
+        Rick and Morty
+      </Text>
+      <TouchableHighlight
+        style={styles.button}
+        data-media={ids.button}
+        onPress={showCharacters}>
+        <Text style={styles.buttonText} data-media={ids.buttonText}>
+          Characters
+        </Text>
       </TouchableHighlight>
     </View>
   );

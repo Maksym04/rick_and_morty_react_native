@@ -1,6 +1,6 @@
-import {StyleSheet} from 'react-native';
+import StyleSheet from 'react-native-media-query';
 
-const styles = StyleSheet.create({
+export const {ids, styles} = StyleSheet.create({
   mainContainer: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -26,28 +26,42 @@ const styles = StyleSheet.create({
     height: 13,
     backgroundColor: '#FF0000',
   },
+  buttonContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    width: '100%',
+  },
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
+    flexDirection: 'row',
+    width: '50%',
     height: 40,
+    '@media (max-width:2000px) and (min-width:701px)': {
+      height: 70,
+    },
+    backgroundColor: '#272B38',
     borderWidth: 1,
     borderRadius: 2,
     borderColor: '#ddd',
     borderBottomWidth: 0,
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: {width: 5, height: 10},
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    elevation: 5,
-    marginLeft: 5,
-    marginRight: 5,
+    elevation: 10,
   },
   buttonText: {
     alignItems: 'center',
     fontSize: 15,
+    '@media (max-width:2000px) and (min-width:701px)': {
+      fontSize: 25,
+    },
     color: '#fff',
   },
+  homeIcon: {
+    color: '#ffffff',
+    width: 36,
+  },
 });
-
-export default styles;

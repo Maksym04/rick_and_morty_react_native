@@ -1,8 +1,10 @@
 import React, {ReactNode} from 'react';
 import {View, Text, ScrollView, TouchableHighlight} from 'react-native';
-import {CharacterDetailsProps} from './../../../App';
+import {CharacterDetailsProps} from './../../types/types';
 import DetailsInfo from './DetailsInfo/DetailsInfo';
-import styles from './CharacterDetailsScreenStyles';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faHome} from '@fortawesome/free-solid-svg-icons';
+import {ids, styles} from './CharacterDetailsScreenStyles';
 
 const CharacterDetailsScreen: React.FC<CharacterDetailsProps> = ({
   route,
@@ -21,25 +23,40 @@ const CharacterDetailsScreen: React.FC<CharacterDetailsProps> = ({
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.mainContainer}>
-      <DetailsInfo
-        name={character.name}
-        image={character.image}
-        statusIcon={statusIcon()}
-        status={character.status}
-        gender={character.gender}
-        episodes={character.episode.length}
-        species={character.species}
-        location={character.location.name}
-        origin={character.origin.name}
-        created={character.created}
-      />
-      <TouchableHighlight
-        style={styles.button}
-        onPress={() => navigation.goBack()}>
-        <Text style={styles.buttonText}>Go back</Text>
-      </TouchableHighlight>
-    </ScrollView>
+    <>
+      <ScrollView contentContainerStyle={styles.mainContainer}>
+        <DetailsInfo
+          name={character.name}
+          image={character.image}
+          statusIcon={statusIcon()}
+          status={character.status}
+          gender={character.gender}
+          episodes={character.episode.length}
+          species={character.species}
+          location={character.location.name}
+          origin={character.origin.name}
+          created={character.created}
+        />
+      </ScrollView>
+      <View style={styles.buttonContainer}>
+        <TouchableHighlight
+          style={styles.button}
+          data-media={ids.button}
+          onPress={() => navigation.navigate('Home')}>
+          <Text style={styles.buttonText} data-media={ids.buttonText}>
+            <FontAwesomeIcon icon={faHome} size={30} style={styles.homeIcon} />
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={styles.button}
+          data-media={ids.button}
+          onPress={() => navigation.goBack()}>
+          <Text style={styles.buttonText} data-media={ids.buttonText}>
+            Go back
+          </Text>
+        </TouchableHighlight>
+      </View>
+    </>
   );
 };
 

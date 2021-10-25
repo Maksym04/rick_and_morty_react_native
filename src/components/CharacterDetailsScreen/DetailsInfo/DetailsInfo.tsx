@@ -1,19 +1,7 @@
-import React, {ReactNode} from 'react';
+import React from 'react';
 import {Image, Text, View} from 'react-native';
-import styles from './DetailsInfoStyles';
-
-interface DetailsInfoProps {
-  name: string;
-  image: string;
-  statusIcon: ReactNode;
-  status: string;
-  gender: string;
-  episodes: number;
-  species: string;
-  location: string;
-  origin: string;
-  created: string;
-}
+import {DetailsInfoProps} from './../../../types/types';
+import {ids, styles} from './DetailsInfoStyles';
 
 const DetailsInfo: React.FC<DetailsInfoProps> = ({
   name,
@@ -30,44 +18,68 @@ const DetailsInfo: React.FC<DetailsInfoProps> = ({
   return (
     <>
       <View style={styles.nameContainer}>
-        <Text style={styles.nameText}>{name}</Text>
+        <Text style={styles.nameText} data-media={ids.nameText}>
+          {name}
+        </Text>
       </View>
       <View style={styles.infoContainer}>
         <Image
           source={{
             uri: image,
           }}
-          style={{width: 260, height: 260}}
+          style={styles.image}
+          data-media={ids.image}
         />
       </View>
-      <View style={styles.infoContainer}>
-        <Text style={styles.statusText}>
-          {statusIcon} {status}
+      <View style={styles.statusContainer}>
+        {statusIcon}
+        <Text style={styles.statusText} data-media={ids.statusText}>
+          {status}
         </Text>
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.captionText}>Gender:</Text>
+        <Text style={styles.captionText} data-media={ids.captionText}>
+          Gender:
+        </Text>
         <Text style={styles.infoText}>{gender}</Text>
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.captionText}>Number of episodes:</Text>
+        <Text style={styles.captionText} data-media={ids.captionText}>
+          Number of episodes:
+        </Text>
         <Text style={styles.infoText}>{episodes}</Text>
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.captionText}>Species:</Text>
-        <Text style={styles.infoText}>{species}</Text>
+        <Text style={styles.captionText} data-media={ids.captionText}>
+          Species:
+        </Text>
+        <Text style={styles.infoText} data-media={ids.infoText}>
+          {species}
+        </Text>
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.captionText}>Last known location:</Text>
-        <Text style={styles.infoText}>{location}</Text>
+        <Text style={styles.captionText} data-media={ids.captionText}>
+          Last known location:
+        </Text>
+        <Text style={styles.infoText} data-media={ids.infoText}>
+          {location}
+        </Text>
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.captionText}>Origin:</Text>
-        <Text style={styles.infoText}>{origin}</Text>
+        <Text style={styles.captionText} data-media={ids.captionText}>
+          Origin:
+        </Text>
+        <Text style={styles.infoText} data-media={ids.infoText}>
+          {origin}
+        </Text>
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.captionText}>Was created:</Text>
-        <Text style={styles.lastInoText}>{created}</Text>
+        <Text style={styles.captionText} data-media={ids.captionText}>
+          Was created:
+        </Text>
+        <Text style={styles.lastInoText} data-media={ids.lastInoText}>
+          {created}
+        </Text>
       </View>
     </>
   );

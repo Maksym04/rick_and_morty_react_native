@@ -1,6 +1,6 @@
-import {StyleSheet} from 'react-native';
+import StyleSheet from 'react-native-media-query';
 
-const styles = StyleSheet.create({
+export const {ids, styles} = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#3C3E44',
     overflow: 'hidden',
     borderRadius: 12,
+    '@media (max-width:2000px) and (min-width:701px)': {
+      height: 300,
+    },
   },
   greenCirle: {
     borderRadius: 50,
@@ -51,5 +54,3 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
 });
-
-export default styles;

@@ -1,16 +1,7 @@
-import React, {ReactNode} from 'react';
+import React from 'react';
 import {Image, Text, View} from 'react-native';
-import styles from './InitialInfoStyles';
-
-interface InitialInfoProps {
-  image: string;
-  name: string;
-  statusIcon: ReactNode;
-  status: string;
-  species: string;
-  location: string;
-  origin: string;
-}
+import {InitialInfoProps} from './../../../types/types';
+import {ids, styles} from './InitialInfoStyles';
 
 const InitialInfo: React.FC<InitialInfoProps> = ({
   image,
@@ -32,19 +23,35 @@ const InitialInfo: React.FC<InitialInfoProps> = ({
         />
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.characterName}>{name}</Text>
-        <Text style={styles.characterStatus}>
-          {statusIcon} {status} - {species}
+        <Text style={styles.characterName} data-media={ids.characterName}>
+          {name}
         </Text>
+        <View style={styles.characterStatusContainer}>
+          {statusIcon}
+          <Text style={styles.characterStatus} data-media={ids.characterStatus}>
+            {status} - {species}
+          </Text>
+        </View>
+
         <View style={styles.characterLocationBox}>
           <Text style={styles.characterLocationHeader}>
             Last known location:
           </Text>
-          <Text style={styles.characterLocation}>{location}</Text>
+          <Text
+            style={styles.characterLocation}
+            data-media={ids.characterLocation}>
+            {location}
+          </Text>
         </View>
         <View style={styles.characterOriginBox}>
-          <Text style={styles.characterOriginHeader}>Origin:</Text>
-          <Text style={styles.characterOrigin}>{origin}</Text>
+          <Text
+            style={styles.characterOriginHeader}
+            data-media={ids.characterOriginHeader}>
+            Origin:
+          </Text>
+          <Text style={styles.characterOrigin} data-media={ids.characterOrigin}>
+            {origin}
+          </Text>
         </View>
       </View>
     </>

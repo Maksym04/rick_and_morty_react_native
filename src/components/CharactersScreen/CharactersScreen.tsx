@@ -7,16 +7,16 @@ import React, {
 } from 'react';
 import {View, TouchableOpacity, FlatList} from 'react-native';
 import {getCharacters} from '../../api/api';
-import {CharactersScreenProps} from './../../../App';
+import {Character} from './../../types/types';
+import {CharactersScreenProps} from './../../types/types';
 import InitialInfo from './InitialInfo/InitialInfo';
 import Buttons from './Buttons/Buttons';
 import Loading from './../Loading/Loading';
 import Error from './../Error/Error';
-import styles from './CharactersScreenStyles';
-import {AxiosGetType} from './../../api/api';
+import {ids, styles} from './CharactersScreenStyles';
 
 const CharactersScreen = ({navigation}: CharactersScreenProps) => {
-  const [characters, setCharacters] = useState<AxiosGetType[]>([]);
+  const [characters, setCharacters] = useState<Array<Character>>([]);
   const [page, setPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
@@ -24,8 +24,8 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
   const load = useCallback(() => {
     setIsLoading(true);
     getCharacters(page)
-      .then((data: any) => {
-        setCharacters(data);
+      .then(charactersList => {
+        setCharacters(charactersList);
       })
       .catch(error => {
         setIsError(true);
@@ -39,7 +39,7 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
     load();
   }, [load, page]);
 
-  const statusIcon = (item: any): ReactNode => {
+  const statusIcon = (item: Character): ReactNode => {
     if (item.status === 'Alive') {
       return <View style={styles.greenCirle} />;
     } else if (item.status === 'unknown') {
@@ -85,6 +85,8 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
     }
   }, [page]);
 
+  const _keyExtractor = (item: {id: Array<Character>}) => item.id;
+
   return (
     <View style={styles.container}>
       {isLoading ? (
@@ -93,13 +95,15 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
         <>
           <FlatList
             data={characters}
-            renderItem={({item}: any) => (
+            renderItem={({item}: {item: Character}) => (
               <View style={styles.charactersBlock}>
                 <TouchableOpacity
                   style={styles.characterBlock}
+                  data-media={ids.characterBlock}
                   onPress={() => {
-                    navigation.navigate('CharacterDetails', {
-                      character: item,
+                    navigation.navigate({
+                      name: 'CharacterDetails',
+                      params: {character: item},
                     });
                   }}>
                   <InitialInfo
@@ -115,7 +119,7 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
               </View>
             )}
             numColumns={1}
-            keyExtractor={(item: any) => item.id}
+            keyExtractor={(item: Character) => item.id.toString()}
           />
           <Buttons
             setFirstPage={setFirstPage}

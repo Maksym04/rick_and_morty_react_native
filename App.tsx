@@ -12,9 +12,9 @@ import GlobalStyles from './GlobalStyles';
 
 enableScreens(false);
 
-const Stack = createStackNavigator<StackParamList>();
-
 export default function App () {
+  const Stack = createStackNavigator<StackParamList>();
+
   return (
     <NavigationContainer>
       <SafeAreaView style={GlobalStyles.AndroidSafeArea}>

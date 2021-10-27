@@ -12,12 +12,24 @@ const Buttons: React.FC<ButtonsProps> = ({
 }) => {
   return (
     <>
-      <TouchableHighlight style={styles.button} onPress={setFirstPage}>
+      <TouchableHighlight
+        accessible={true}
+        accessibilityLabel='First'
+        accessibilityHint='Navigates to the first page of characters'
+        accessibilityRole='button'
+        style={styles.button}
+        onPress={setFirstPage}>
         <Text style={styles.buttonText} data-media={ids.buttonText}>
           FIRST
         </Text>
       </TouchableHighlight>
-      <TouchableHighlight style={styles.button} onPress={setNextPage}>
+      <TouchableHighlight
+        accessible={true}
+        accessibilityLabel='Next'
+        accessibilityHint='Navigates to the next page of characters'
+        accessibilityRole='button'
+        style={styles.button}
+        onPress={setNextPage}>
         <View style={styles.buttonTextContainer}>
           <Text style={styles.buttonText} data-media={ids.buttonText}>
             NEXT{' '}
@@ -29,7 +41,13 @@ const Buttons: React.FC<ButtonsProps> = ({
           </Text>
         </View>
       </TouchableHighlight>
-      <TouchableHighlight style={styles.button} onPress={setPrevPage}>
+      <TouchableHighlight
+        accessible={true}
+        accessibilityLabel='Previous'
+        accessibilityHint='Navigates to the previous page of characters'
+        accessibilityRole='button'
+        style={styles.button}
+        onPress={setPrevPage}>
         <View style={styles.buttonTextContainer}>
           <Text style={styles.buttonText} data-media={ids.buttonText}>
             PREVIOUS{' '}

@@ -40,6 +40,10 @@ const CharacterDetailsScreen: React.FC<CharacterDetailsProps> = ({
       </ScrollView>
       <View style={styles.buttonContainer}>
         <TouchableHighlight
+          accessible={true}
+          accessibilityLabel='Go home'
+          accessibilityHint='Navigates to the home screen'
+          accessibilityRole='button'
           style={styles.button}
           data-media={ids.button}
           onPress={() => navigation.navigate('Home')}>
@@ -48,6 +52,10 @@ const CharacterDetailsScreen: React.FC<CharacterDetailsProps> = ({
           </Text>
         </TouchableHighlight>
         <TouchableHighlight
+          accessible={true}
+          accessibilityLabel='Go back'
+          accessibilityHint='Navigates to the previous screen'
+          accessibilityRole='button'
           style={styles.button}
           data-media={ids.button}
           onPress={() => navigation.goBack()}>

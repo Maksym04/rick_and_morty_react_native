@@ -85,8 +85,6 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
     }
   }, [page]);
 
-  const _keyExtractor = (item: {id: Array<Character>}) => item.id;
-
   return (
     <View style={styles.container}>
       {isLoading ? (
@@ -98,6 +96,10 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
             renderItem={({item}: {item: Character}) => (
               <View style={styles.charactersBlock}>
                 <TouchableOpacity
+                  accessible={true}
+                  accessibilityLabel='Character details'
+                  accessibilityHint='Navigates to the character details'
+                  accessibilityRole='menuitem'
                   style={styles.characterBlock}
                   data-media={ids.characterBlock}
                   onPress={() => {

@@ -18,6 +18,10 @@ const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
         Rick and Morty
       </Text>
       <TouchableHighlight
+        accessible={true}
+        accessibilityLabel='Characters list'
+        accessibilityHint='Navigates to the characters list'
+        accessibilityRole='menu'
         style={styles.button}
         data-media={ids.button}
         onPress={showCharacters}>

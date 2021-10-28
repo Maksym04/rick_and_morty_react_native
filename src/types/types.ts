@@ -20,8 +20,13 @@ export interface Character {
   created: string;
 }
 
+export interface Info {
+  pages: number;
+}
+
 export interface AxiosGetType {
   results: Array<Character>;
+  info: Info;
 }
 
 export type StackParamList = {
@@ -53,11 +58,13 @@ export interface InitialInfoProps {
 }
 
 export interface ButtonsProps {
-  setFirstPage: () => void;
-  setNextPage: () => void;
-  setPrevPage: () => void;
+  showValuePrevPage: number;
   showValueNextPage: number;
-  showValuePrevPage: number | string;
+  setFirstPage: () => void;
+  setPrevPage: () => void;
+  setNextPage: () => void;
+  page: number;
+  totalPage: number;
 }
 
 export interface DetailsInfoProps {
@@ -71,4 +78,10 @@ export interface DetailsInfoProps {
   location: string;
   origin: string;
   created: string;
+}
+
+export interface SearchProps {
+  name: string;
+  getInputValue: (value: string) => void;
+  getSubmit: () => void;
 }

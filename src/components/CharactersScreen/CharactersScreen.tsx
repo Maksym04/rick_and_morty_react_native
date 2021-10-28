@@ -6,38 +6,53 @@ import React, {
   ReactNode,
 } from 'react';
 import {View, TouchableOpacity, FlatList} from 'react-native';
-import {getCharacters} from '../../api/api';
-import {Character} from './../../types/types';
-import {CharactersScreenProps} from './../../types/types';
+import axios from 'axios';
+import {BASE_URI} from '../../api/api';
+import {
+  Character,
+  CharactersScreenProps,
+  AxiosGetType,
+} from './../../types/types';
 import InitialInfo from './InitialInfo/InitialInfo';
 import Buttons from './Buttons/Buttons';
+import Search from '../Search/Search';
 import Loading from './../Loading/Loading';
 import Error from './../Error/Error';
 import {ids, styles} from './CharactersScreenStyles';
 
 const CharactersScreen = ({navigation}: CharactersScreenProps) => {
   const [characters, setCharacters] = useState<Array<Character>>([]);
-  const [page, setPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPage, setTotalPage] = useState<number>(1);
+  const [searchCaharacterName, setSearchCaharacterName] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
 
-  const load = useCallback(() => {
-    setIsLoading(true);
-    getCharacters(page)
-      .then(charactersList => {
-        setCharacters(charactersList);
-      })
-      .catch(error => {
-        setIsError(true);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [page]);
+  const getData = useCallback(
+    (page: number = 1, name: string = '') => {
+      setIsLoading(true);
+      axios
+        .get<AxiosGetType>(
+          `${BASE_URI}/?page=${page}&name=${encodeURIComponent(name)}`
+        )
+        .then(response => {
+          setCharacters(response.data.results);
+          setTotalPage(response.data.info.pages);
+          setCurrentPage(page);
+        })
+        .catch(error => {
+          setIsError(error.message);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    },
+    [currentPage]
+  );
 
   useEffect(() => {
-    load();
-  }, [load, page]);
+    getData();
+  }, []);
 
   const statusIcon = (item: Character): ReactNode => {
     if (item.status === 'Alive') {
@@ -50,40 +65,37 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
   };
 
   const setFirstPage = useCallback((): void => {
-    setPage(1);
-  }, [page]);
-
-  const setPrevPage = useCallback((): void => {
-    if (page > 1) {
-      setPage(page - 1);
-    }
-  }, [page]);
+    setCurrentPage(1);
+    getData(1, searchCaharacterName);
+  }, [currentPage, searchCaharacterName]);
 
   const setNextPage = useCallback((): void => {
-    if (page < 34) {
-      setPage(page + 1);
-    } else {
-      setPage(1);
-    }
-  }, [page]);
+    setCurrentPage(prevPage => prevPage + 1);
+    getData(currentPage + 1, searchCaharacterName);
+  }, [currentPage, searchCaharacterName]);
 
-  const showValuePrevPage = useMemo((): number | string => {
-    if (page > 1) {
-      const pageValue = page - 1;
-      return pageValue;
-    } else {
-      return `-`;
-    }
-  }, [page]);
+  const setPrevPage = useCallback((): void => {
+    setCurrentPage(prevPage => prevPage - 1);
+    getData(currentPage - 1, searchCaharacterName);
+  }, [currentPage, searchCaharacterName]);
+
+  const showValuePrevPage = useMemo((): number => {
+    const pageValue = currentPage - 1;
+    return pageValue;
+  }, [currentPage]);
 
   const showValueNextPage = useMemo((): number => {
-    if (page < 34) {
-      const pageValue = page + 1;
-      return pageValue;
-    } else {
-      return 1;
-    }
-  }, [page]);
+    const pageValue = currentPage + 1;
+    return pageValue;
+  }, [currentPage]);
+
+  const storeInputValue = (value: string): void => {
+    setSearchCaharacterName(value);
+  };
+
+  const getSubmit = (): void => {
+    getData(1, searchCaharacterName);
+  };
 
   return (
     <View style={styles.container}>
@@ -91,6 +103,11 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
         <Loading />
       ) : <Error /> ? (
         <>
+          <Search
+            name={searchCaharacterName}
+            getInputValue={storeInputValue}
+            getSubmit={getSubmit}
+          />
           <FlatList
             data={characters}
             renderItem={({item}: {item: Character}) => (
@@ -124,6 +141,8 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
             keyExtractor={(item: Character) => item.id.toString()}
           />
           <Buttons
+            page={currentPage}
+            totalPage={totalPage}
             setFirstPage={setFirstPage}
             setNextPage={setNextPage}
             setPrevPage={setPrevPage}

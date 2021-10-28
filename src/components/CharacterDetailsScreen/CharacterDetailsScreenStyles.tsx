@@ -54,11 +54,16 @@ export const {ids, styles} = StyleSheet.create({
   },
   buttonText: {
     alignItems: 'center',
-    fontSize: 15,
+    fontSize: 14,
     '@media (max-width:2000px) and (min-width:701px)': {
-      fontSize: 25,
+      fontSize: 24,
     },
     color: '#fff',
+  },
+  homeIconContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
   },
   homeIcon: {
     color: '#ffffff',

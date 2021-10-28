@@ -19,8 +19,8 @@ export const {ids, styles} = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'nowrap',
     width: '90%',
-    marginTop: 12,
-    marginBottom: 12,
+    marginTop: 7,
+    marginBottom: 7,
     backgroundColor: '#3C3E44',
     overflow: 'hidden',
     borderRadius: 12,
@@ -45,12 +45,5 @@ export const {ids, styles} = StyleSheet.create({
     width: 10,
     height: 10,
     backgroundColor: '#FF0000',
-  },
-  inputText: {
-    backgroundColor: '#262626',
-    marginTop: 15,
-    marginBottom: 15,
-    marginLeft: 10,
-    marginRight: 10,
   },
 });

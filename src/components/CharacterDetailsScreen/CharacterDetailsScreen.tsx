@@ -1,9 +1,9 @@
 import React, {ReactNode} from 'react';
 import {View, Text, ScrollView, TouchableHighlight} from 'react-native';
-import {CharacterDetailsProps} from './../../types/types';
-import DetailsInfo from './DetailsInfo/DetailsInfo';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faHome} from '@fortawesome/free-solid-svg-icons';
+import {CharacterDetailsProps} from './../../types/types';
+import DetailsInfo from './DetailsInfo/DetailsInfo';
 import {ids, styles} from './CharacterDetailsScreenStyles';
 
 const CharacterDetailsScreen: React.FC<CharacterDetailsProps> = ({
@@ -47,9 +47,12 @@ const CharacterDetailsScreen: React.FC<CharacterDetailsProps> = ({
           style={styles.button}
           data-media={ids.button}
           onPress={() => navigation.navigate('Home')}>
-          <Text style={styles.buttonText} data-media={ids.buttonText}>
-            <FontAwesomeIcon icon={faHome} size={30} style={styles.homeIcon} />
-          </Text>
+          <View style={styles.homeIconContainer}>
+            <FontAwesomeIcon icon={faHome} size={20} style={styles.homeIcon} />
+            <Text style={styles.buttonText} data-media={ids.buttonText}>
+              Home
+            </Text>
+          </View>
         </TouchableHighlight>
         <TouchableHighlight
           accessible={true}

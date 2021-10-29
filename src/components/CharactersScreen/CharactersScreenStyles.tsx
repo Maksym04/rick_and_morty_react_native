@@ -1,32 +1,10 @@
-import StyleSheet from 'react-native-media-query';
+import {StyleSheet} from 'react-native';
 
-export const {ids, styles} = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     backgroundColor: '#272B38',
-  },
-  charactersBlock: {
-    flex: 1,
-    alignItems: 'center',
-    flexDirection: 'column',
-    borderBottomColor: '#3C3E44',
-    borderBottomWidth: 2,
-    width: '100%',
-  },
-  characterBlock: {
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
-    width: '90%',
-    marginTop: 7,
-    marginBottom: 7,
-    backgroundColor: '#3C3E44',
-    overflow: 'hidden',
-    borderRadius: 12,
-    '@media (max-width:2000px) and (min-width:701px)': {
-      height: 300,
-    },
   },
   greenCirle: {
     borderRadius: 50,
@@ -47,3 +25,5 @@ export const {ids, styles} = StyleSheet.create({
     backgroundColor: '#FF0000',
   },
 });
+
+export default styles;

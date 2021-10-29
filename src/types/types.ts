@@ -1,4 +1,7 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {
+  NativeStackNavigationProp,
+  NativeStackScreenProps,
+} from '@react-navigation/native-stack';
 import {ReactNode} from 'react';
 
 export interface Character {
@@ -47,6 +50,12 @@ export type CharacterDetailsProps = NativeStackScreenProps<
   'CharacterDetails'
 >;
 
+export interface CharactersListProps {
+  characters: Character[];
+  navigation: NativeStackNavigationProp<StackParamList, 'Characters'>;
+  statusIcon: (item: Character) => ReactNode;
+}
+
 export interface InitialInfoProps {
   image: string;
   name: string;
@@ -67,6 +76,20 @@ export interface ButtonsProps {
   totalPage: number;
 }
 
+export interface FirstPageButtonProps {
+  setFirstPage: () => void;
+}
+
+export interface PreviousPageButtonProps {
+  showValuePrevPage: number;
+  setPrevPage: () => void;
+}
+
+export interface NextPageButtonProps {
+  showValueNextPage: number;
+  setNextPage: () => void;
+}
+
 export interface DetailsInfoProps {
   name: string;
   image: string;
@@ -80,8 +103,34 @@ export interface DetailsInfoProps {
   created: string;
 }
 
+export interface NavigationButtonsProps {
+  navigation: NativeStackNavigationProp<StackParamList, 'CharacterDetails'>;
+}
+
 export interface SearchProps {
   name: string;
   getInputValue: (value: string) => void;
   getSubmit: () => void;
+}
+
+export interface SearchButtonProps {
+  changeActiveSearchState: () => void;
+}
+
+export interface InputContainerProps {
+  name: string;
+  sendValue: (value: string) => void;
+  handleSubmit: () => void;
+  changeActiveSearchState: () => void;
+  checkFormatError: () => boolean;
+}
+
+export interface InputProps {
+  name: string;
+  sendValue: (value: string) => void;
+  handleSubmit: () => void;
+}
+
+export interface CloseButtonProps {
+  changeActiveSearchState: () => void;
 }

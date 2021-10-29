@@ -5,20 +5,15 @@ import React, {
   useMemo,
   ReactNode,
 } from 'react';
-import {View, TouchableOpacity, FlatList} from 'react-native';
-import axios from 'axios';
-import {BASE_URI} from '../../api/api';
-import {
-  Character,
-  CharactersScreenProps,
-  AxiosGetType,
-} from './../../types/types';
-import InitialInfo from './InitialInfo/InitialInfo';
+import {View} from 'react-native';
+import {getCharacters} from '../../api/api';
+import {Character, CharactersScreenProps} from './../../types/types';
+import CharactersList from './CharactersList/CharactersList';
 import Buttons from './Buttons/Buttons';
 import Search from '../Search/Search';
 import Loading from './../Loading/Loading';
 import Error from './../Error/Error';
-import {ids, styles} from './CharactersScreenStyles';
+import styles from './CharactersScreenStyles';
 
 const CharactersScreen = ({navigation}: CharactersScreenProps) => {
   const [characters, setCharacters] = useState<Array<Character>>([]);
@@ -31,10 +26,7 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
   const getData = useCallback(
     (page: number = 1, name: string = '') => {
       setIsLoading(true);
-      axios
-        .get<AxiosGetType>(
-          `${BASE_URI}/?page=${page}&name=${encodeURIComponent(name)}`
-        )
+      getCharacters(page, name)
         .then(response => {
           setCharacters(response.data.results);
           setTotalPage(response.data.info.pages);
@@ -108,37 +100,10 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
             getInputValue={storeInputValue}
             getSubmit={getSubmit}
           />
-          <FlatList
-            data={characters}
-            renderItem={({item}: {item: Character}) => (
-              <View style={styles.charactersBlock}>
-                <TouchableOpacity
-                  accessible={true}
-                  accessibilityLabel='Character details'
-                  accessibilityHint='Navigates to the character details'
-                  accessibilityRole='menuitem'
-                  style={styles.characterBlock}
-                  data-media={ids.characterBlock}
-                  onPress={() => {
-                    navigation.navigate({
-                      name: 'CharacterDetails',
-                      params: {character: item},
-                    });
-                  }}>
-                  <InitialInfo
-                    image={item.image}
-                    name={item.name}
-                    statusIcon={statusIcon(item)}
-                    status={item.status}
-                    species={item.species}
-                    location={item.location.name}
-                    origin={item.origin.name}
-                  />
-                </TouchableOpacity>
-              </View>
-            )}
-            numColumns={1}
-            keyExtractor={(item: Character) => item.id.toString()}
+          <CharactersList
+            characters={characters}
+            navigation={navigation}
+            statusIcon={statusIcon}
           />
           <Buttons
             page={currentPage}

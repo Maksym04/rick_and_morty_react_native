@@ -26,6 +26,7 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
   const getData = useCallback(
     (page: number = 1, name: string = '') => {
       setIsLoading(true);
+      setIsError(false);
       getCharacters(page, name)
         .then(response => {
           setCharacters(response.data.results);
@@ -33,7 +34,7 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
           setCurrentPage(page);
         })
         .catch(error => {
-          setIsError(error.message);
+          setIsError(true);
         })
         .finally(() => {
           setIsLoading(false);
@@ -93,7 +94,7 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
     <View style={styles.container}>
       {isLoading ? (
         <Loading />
-      ) : <Error /> ? (
+      ) : (
         <>
           <Search
             name={searchCaharacterName}
@@ -115,7 +116,8 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
             showValuePrevPage={showValuePrevPage}
           />
         </>
-      ) : null}
+      )}
+      {isError && <Error />}
     </View>
   );
 };

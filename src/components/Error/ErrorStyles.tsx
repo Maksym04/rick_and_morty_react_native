@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
+    marginTop: '-100%',
   },
   errorIcon: {
     color: '#ffffff',

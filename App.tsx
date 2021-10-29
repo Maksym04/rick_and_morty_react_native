@@ -12,7 +12,7 @@ import GlobalStyles from './GlobalStyles';
 
 enableScreens(false);
 
-export default function App () {
+const App: React.FC = () => {
   const Stack = createStackNavigator<StackParamList>();
 
   return (
@@ -65,4 +65,6 @@ export default function App () {
       </SafeAreaView>
     </NavigationContainer>
   );
-}
+};
+
+export default App;

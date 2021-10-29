@@ -24,7 +24,7 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
   const [isError, setIsError] = useState<boolean>(false);
 
   const getData = useCallback(
-    (page: number = 1, name: string = '') => {
+    (page: number = 1, name: string = ''): void => {
       setIsLoading(true);
       setIsError(false);
       getCharacters(page, name)

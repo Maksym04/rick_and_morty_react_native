@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
-import {InitialInfoProps} from './../../../types/types';
+import {InitialInfoProps} from '../../types/types';
 import {ids, styles} from './InitialInfoStyles';
 
 const InitialInfo: React.FC<InitialInfoProps> = ({

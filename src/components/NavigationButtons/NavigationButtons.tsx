@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, TouchableHighlight, View} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faHome} from '@fortawesome/free-solid-svg-icons';
-import {NavigationButtonsProps} from './../../../types/types';
+import {NavigationButtonsProps} from '../../types/types';
 import {ids, styles} from './NavigationButtonsStyles';
 
 const NavigationButtons: React.FC<NavigationButtonsProps> = ({navigation}) => {

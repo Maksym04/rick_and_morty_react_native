@@ -2,7 +2,6 @@ import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
-import {ReactNode} from 'react';
 
 export interface Character {
   id: number;
@@ -32,6 +31,12 @@ export interface AxiosGetType {
   info: Info;
 }
 
+export enum Screen {
+  Home = 'Home',
+  Characters = 'Characters',
+  CharacterDetails = 'CharacterDetails',
+}
+
 export type StackParamList = {
   Home: undefined;
   Characters: undefined;
@@ -42,24 +47,24 @@ export type HomeScreenProps = NativeStackScreenProps<StackParamList, 'Home'>;
 
 export type CharactersScreenProps = NativeStackScreenProps<
   StackParamList,
-  'Characters'
+  Screen.Characters
 >;
 
 export type CharacterDetailsProps = NativeStackScreenProps<
   StackParamList,
-  'CharacterDetails'
+  Screen.CharacterDetails
 >;
 
 export interface CharactersListProps {
   characters: Character[];
   navigation: NativeStackNavigationProp<StackParamList, 'Characters'>;
-  statusIcon: (item: Character) => ReactNode;
+  statusIcon: (item: Character) => JSX.Element | undefined;
 }
 
 export interface InitialInfoProps {
   image: string;
   name: string;
-  statusIcon: ReactNode;
+  statusIcon: JSX.Element | undefined;
   status: string;
   species: string;
   location: string;
@@ -93,7 +98,7 @@ export interface NextPageButtonProps {
 export interface DetailsInfoProps {
   name: string;
   image: string;
-  statusIcon: ReactNode;
+  statusIcon: JSX.Element | undefined;
   status: string;
   gender: string;
   episodes: number;

@@ -1,21 +1,15 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useMemo,
-  ReactNode,
-} from 'react';
+import React, {useState, useEffect, useCallback, useMemo} from 'react';
 import {View} from 'react-native';
 import {getCharacters} from '../../api/api';
 import {Character, CharactersScreenProps} from './../../types/types';
-import CharactersList from './CharactersList/CharactersList';
-import Buttons from './Buttons/Buttons';
-import Search from '../Search/Search';
-import Loading from './../Loading/Loading';
-import Error from './../Error/Error';
+import CharactersList from '../../components/CharactersList/CharactersList';
+import Buttons from '../../components/Buttons/Buttons';
+import Search from './../../components/Search/Search';
+import Loading from './../../components/Loading/Loading';
+import Error from './../../components/Error/Error';
 import styles from './CharactersScreenStyles';
 
-const CharactersScreen = ({navigation}: CharactersScreenProps) => {
+const CharactersScreen: React.FC<CharactersScreenProps> = ({navigation}) => {
   const [characters, setCharacters] = useState<Array<Character>>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPage, setTotalPage] = useState<number>(1);
@@ -47,30 +41,38 @@ const CharactersScreen = ({navigation}: CharactersScreenProps) => {
     getData();
   }, []);
 
-  const statusIcon = (item: Character): ReactNode => {
-    if (item.status === 'Alive') {
-      return <View style={styles.greenCirle} />;
-    } else if (item.status === 'unknown') {
-      return <View style={styles.grayCirle} />;
-    } else {
-      return <View style={styles.redCirle} />;
+  const statusIcon = (item: Character): JSX.Element | undefined => {
+    switch (true) {
+      case item.status === 'Alive':
+        {
+          return <View style={styles.greenCirle} />;
+        }
+        break;
+      case item.status === 'unknown':
+        {
+          return <View style={styles.grayCirle} />;
+        }
+        break;
+      case item.status === 'Dead': {
+        return <View style={styles.redCirle} />;
+      }
     }
   };
 
   const setFirstPage = useCallback((): void => {
     setCurrentPage(1);
     getData(1, searchCaharacterName);
-  }, [currentPage, searchCaharacterName]);
+  }, [getData, searchCaharacterName]);
 
   const setNextPage = useCallback((): void => {
     setCurrentPage(prevPage => prevPage + 1);
     getData(currentPage + 1, searchCaharacterName);
-  }, [currentPage, searchCaharacterName]);
+  }, [getData, searchCaharacterName]);
 
   const setPrevPage = useCallback((): void => {
     setCurrentPage(prevPage => prevPage - 1);
     getData(currentPage - 1, searchCaharacterName);
-  }, [currentPage, searchCaharacterName]);
+  }, [getData, searchCaharacterName]);
 
   const showValuePrevPage = useMemo((): number => {
     const pageValue = currentPage - 1;

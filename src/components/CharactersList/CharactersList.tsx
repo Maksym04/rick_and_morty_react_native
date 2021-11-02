@@ -1,6 +1,6 @@
 import React from 'react';
 import {FlatList, TouchableOpacity, View} from 'react-native';
-import {Character, CharactersListProps} from './../../../types/types';
+import {Character, CharactersListProps, Screen} from '../../types/types';
 import InitialInfo from '../InitialInfo/InitialInfo';
 import {ids, styles} from './CharactersListStyles';
 
@@ -23,7 +23,7 @@ const CharactersList: React.FC<CharactersListProps> = ({
             data-media={ids.characterBlock}
             onPress={() => {
               navigation.navigate({
-                name: 'CharacterDetails',
+                name: Screen.CharacterDetails,
                 params: {character: item},
               });
             }}>

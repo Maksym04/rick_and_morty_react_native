@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
-import {DetailsInfoProps} from './../../../types/types';
+import {DetailsInfoProps} from '../../types/types';
 import {ids, styles} from './DetailsInfoStyles';
 
 const DetailsInfo: React.FC<DetailsInfoProps> = ({

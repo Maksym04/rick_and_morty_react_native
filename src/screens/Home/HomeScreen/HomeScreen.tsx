@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableHighlight, Image} from 'react-native';
-import {HomeScreenProps} from './../../types/types';
+import {HomeScreenProps} from './../../../types/types';
 import {ids, styles} from './HomeScreenStyles';
 
 const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
@@ -12,7 +12,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
     <View style={styles.container}>
       <Image
         style={styles.image}
-        source={require('./../../images/background_image.jpg')}
+        source={require('./../../../images/background_image.jpg')}
       />
       <Text style={styles.text} data-media={ids.text}>
         Rick and Morty

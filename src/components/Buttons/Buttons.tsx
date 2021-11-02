@@ -1,5 +1,5 @@
 import React from 'react';
-import {ButtonsProps} from './../../../types/types';
+import {ButtonsProps} from '../../types/types';
 import FirstPageButton from './FirstPageButton';
 import NextPageButton from './NextPageButton';
 import PreviousPageButton from './PreviousPageButton';

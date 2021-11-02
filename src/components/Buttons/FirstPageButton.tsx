@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, TouchableHighlight, View} from 'react-native';
-import {FirstPageButtonProps} from './../../../types/types';
+import {FirstPageButtonProps} from '../../types/types';
 import {ids, styles} from './ButtonsStyles';
 
 const FirstPageButton: React.FC<FirstPageButtonProps> = ({setFirstPage}) => {

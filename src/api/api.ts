@@ -6,8 +6,7 @@ export const getCharacters = async (
   name: string
 ): Promise<AxiosResponse<AxiosGetType>> => {
   const BASE_URI = 'https://rickandmortyapi.com/api/character';
-  const characters = await axios.get<AxiosGetType>(
+  return await axios.get<AxiosGetType>(
     `${BASE_URI}/?page=${page}&name=${encodeURIComponent(name)}`
   );
-  return characters;
 };

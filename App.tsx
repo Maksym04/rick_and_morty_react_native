@@ -4,10 +4,10 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {enableScreens} from 'react-native-screens';
-import {StackParamList} from './src/types/types';
-import HomeScreen from './src/components/HomeScreen/HomeScreen';
-import CharactersScreen from './src/components/CharactersScreen/CharactersScreen';
-import CharacterDetailsScreen from './src/components/CharacterDetailsScreen/CharacterDetailsScreen';
+import {StackParamList, Screen} from './src/types/types';
+import HomeScreen from './src/screens/Home/HomeScreen/HomeScreen';
+import CharactersScreen from './src/screens/CharactersScreen/CharactersScreen';
+import CharacterDetailsScreen from './src/screens/CharacterDetailsScreen/CharacterDetailsScreen';
 import GlobalStyles from './GlobalStyles';
 
 enableScreens(false);
@@ -18,9 +18,11 @@ const App: React.FC = () => {
   return (
     <NavigationContainer>
       <SafeAreaView style={GlobalStyles.AndroidSafeArea}>
-        <Stack.Navigator initialRouteName='Home' detachInactiveScreens={false}>
+        <Stack.Navigator
+          initialRouteName={Screen.Home}
+          detachInactiveScreens={false}>
           <Stack.Screen
-            name='Home'
+            name={Screen.Home}
             component={HomeScreen}
             options={{
               headerTitle: 'Home',
@@ -34,7 +36,7 @@ const App: React.FC = () => {
             }}
           />
           <Stack.Screen
-            name='Characters'
+            name={Screen.Characters}
             component={CharactersScreen}
             options={{
               headerTitle: 'Characters',
@@ -48,7 +50,7 @@ const App: React.FC = () => {
             }}
           />
           <Stack.Screen
-            name='CharacterDetails'
+            name={Screen.CharacterDetails}
             component={CharacterDetailsScreen}
             options={{
               headerTitle: 'Character',

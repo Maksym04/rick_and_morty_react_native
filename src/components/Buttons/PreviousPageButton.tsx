@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, TouchableHighlight, View} from 'react-native';
+import text from './../../locales/text.json';
 import {PreviousPageButtonProps} from '../../types/types';
 import {ids, styles} from './ButtonsStyles';
 
@@ -17,7 +18,7 @@ const PreviousPageButton: React.FC<PreviousPageButtonProps> = ({
       onPress={setPrevPage}>
       <View style={styles.buttonTextContainer}>
         <Text style={styles.buttonText} data-media={ids.buttonText}>
-          PREVIOUS{' '}
+          {text.previousPage}{' '}
         </Text>
         <Text
           style={styles.showPageValueText}

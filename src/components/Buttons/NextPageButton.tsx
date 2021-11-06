@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, TouchableHighlight, View} from 'react-native';
+import text from './.././../locales/text.json';
 import {NextPageButtonProps} from '../../types/types';
 import {ids, styles} from './ButtonsStyles';
 
@@ -17,7 +18,7 @@ const NextPageButton: React.FC<NextPageButtonProps> = ({
       onPress={setNextPage}>
       <View style={styles.buttonTextContainer}>
         <Text style={styles.buttonText} data-media={ids.buttonText}>
-          NEXT{' '}
+          {text.nextPage}{' '}
         </Text>
         <Text
           style={styles.showPageValueText}

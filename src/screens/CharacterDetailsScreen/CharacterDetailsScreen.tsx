@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {View, ScrollView} from 'react-native';
 import {CharacterDetailsProps} from './../../types/types';
 import DetailsInfo from '../../components/DetailsInfo/DetailsInfo';
@@ -11,7 +11,7 @@ const CharacterDetailsScreen: React.FC<CharacterDetailsProps> = ({
 }) => {
   const {character} = route.params;
 
-  const statusIcon = (): JSX.Element | undefined => {
+  const statusIcon = useCallback((): JSX.Element | undefined => {
     switch (true) {
       case character.status === 'Alive':
         {
@@ -27,7 +27,7 @@ const CharacterDetailsScreen: React.FC<CharacterDetailsProps> = ({
         return <View style={styles.redCirle} />;
       }
     }
-  };
+  }, []);
 
   return (
     <>

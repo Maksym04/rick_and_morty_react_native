@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, TouchableHighlight, View} from 'react-native';
+import text from './../../locales/text.json';
 import {FirstPageButtonProps} from '../../types/types';
 import {ids, styles} from './ButtonsStyles';
 
@@ -14,7 +15,7 @@ const FirstPageButton: React.FC<FirstPageButtonProps> = ({setFirstPage}) => {
       onPress={setFirstPage}>
       <View style={styles.buttonTextContainer}>
         <Text style={styles.buttonText} data-media={ids.buttonText}>
-          FIRST
+          {text.firstPage}
         </Text>
       </View>
     </TouchableHighlight>

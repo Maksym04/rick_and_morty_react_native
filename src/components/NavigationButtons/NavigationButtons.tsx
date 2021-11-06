@@ -1,11 +1,20 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {Text, TouchableHighlight, View} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faHome} from '@fortawesome/free-solid-svg-icons';
+import text from './../../locales/text.json';
 import {NavigationButtonsProps} from '../../types/types';
 import {ids, styles} from './NavigationButtonsStyles';
 
 const NavigationButtons: React.FC<NavigationButtonsProps> = ({navigation}) => {
+  const goHome = useCallback((): void => {
+    navigation.navigate('Home');
+  }, []);
+
+  const goBack = useCallback((): void => {
+    navigation.goBack();
+  }, []);
+
   return (
     <View style={styles.buttonContainer}>
       <TouchableHighlight
@@ -15,11 +24,11 @@ const NavigationButtons: React.FC<NavigationButtonsProps> = ({navigation}) => {
         accessibilityRole='button'
         style={styles.button}
         data-media={ids.button}
-        onPress={() => navigation.navigate('Home')}>
+        onPress={goHome}>
         <View style={styles.homeIconContainer}>
           <FontAwesomeIcon icon={faHome} size={20} style={styles.homeIcon} />
           <Text style={styles.buttonText} data-media={ids.buttonText}>
-            Home
+            {text.home}
           </Text>
         </View>
       </TouchableHighlight>
@@ -30,9 +39,9 @@ const NavigationButtons: React.FC<NavigationButtonsProps> = ({navigation}) => {
         accessibilityRole='button'
         style={styles.button}
         data-media={ids.button}
-        onPress={() => navigation.goBack()}>
+        onPress={goBack}>
         <Text style={styles.buttonText} data-media={ids.buttonText}>
-          Go back
+          {text.goBack}
         </Text>
       </TouchableHighlight>
     </View>

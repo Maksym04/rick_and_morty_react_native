@@ -1,5 +1,6 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
+import text from './../../locales/text.json';
 import {DetailsInfoProps} from '../../types/types';
 import {ids, styles} from './DetailsInfoStyles';
 
@@ -39,19 +40,19 @@ const DetailsInfo: React.FC<DetailsInfoProps> = ({
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.captionText} data-media={ids.captionText}>
-          Gender:
+          {text.gender}
         </Text>
         <Text style={styles.infoText}>{gender}</Text>
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.captionText} data-media={ids.captionText}>
-          Number of episodes:
+          {text.episodesNumber}
         </Text>
         <Text style={styles.infoText}>{episodes}</Text>
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.captionText} data-media={ids.captionText}>
-          Species:
+          {text.species}
         </Text>
         <Text style={styles.infoText} data-media={ids.infoText}>
           {species}
@@ -59,7 +60,7 @@ const DetailsInfo: React.FC<DetailsInfoProps> = ({
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.captionText} data-media={ids.captionText}>
-          Last known location:
+          {text.lastLocation}
         </Text>
         <Text style={styles.infoText} data-media={ids.infoText}>
           {location}
@@ -67,7 +68,7 @@ const DetailsInfo: React.FC<DetailsInfoProps> = ({
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.captionText} data-media={ids.captionText}>
-          Origin:
+          {text.origin}
         </Text>
         <Text style={styles.infoText} data-media={ids.infoText}>
           {origin}
@@ -75,7 +76,7 @@ const DetailsInfo: React.FC<DetailsInfoProps> = ({
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.captionText} data-media={ids.captionText}>
-          Was created:
+          {text.created}
         </Text>
         <Text style={styles.lastInoText} data-media={ids.lastInoText}>
           {created}

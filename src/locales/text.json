@@ -1,0 +1,26 @@
+{
+  "heading": "Rick and Morty",
+  "charactersList": "Characters",
+  "firstPage": "FIRST",
+  "nextPage": "NEXT",
+  "previousPage": "PREVIOUS",
+  "gender": "Gender:",
+  "episodesNumber": "Number of episodes:",
+  "species": "Species:",
+  "lastLocation": "Last known location:",
+  "origin": "Origin:",
+  "created": "Was created:",
+  "error": "ERROR :(",
+  "home": "Home",
+  "goBack": "Go back",
+  "searchExample": "Search example:",
+  "exampleCharacters": {
+    "1": "Rick",
+    "2": "Morty",
+    "3": "Summer",
+    "4": "Beth",
+    "5": "Jerry"
+  },
+  "exampleText": "To return to the full list of characters, you need to clear the search.",
+  "validateSearchText": "Character names contain only letters and only one space"
+}

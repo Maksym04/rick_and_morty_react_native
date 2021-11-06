@@ -3,6 +3,7 @@ import {Text, View} from 'react-native';
 import Tooltip from 'rn-tooltip';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
+import text from './../../../locales/text.json';
 import styles from './InfoStyles';
 
 const Info: React.FC = () => {
@@ -15,16 +16,13 @@ const Info: React.FC = () => {
       <Tooltip
         popover={
           <View>
-            <Text style={styles.infoHeaderText}>Search example:</Text>
-            <Text style={styles.infoText}>Rick</Text>
-            <Text style={styles.infoText}>Morty</Text>
-            <Text style={styles.infoText}>Summer</Text>
-            <Text style={styles.infoText}>Beth</Text>
-            <Text style={styles.infoText}>Jerry</Text>
-            <Text style={styles.infoBottomText}>
-              To return to the full list of characters, you need to clear the
-              search.
-            </Text>
+            <Text style={styles.infoHeaderText}>{text.searchExample}</Text>
+            <Text style={styles.infoText}>{text.exampleCharacters[1]}</Text>
+            <Text style={styles.infoText}>{text.exampleCharacters[2]}</Text>
+            <Text style={styles.infoText}>{text.exampleCharacters[3]}</Text>
+            <Text style={styles.infoText}>{text.exampleCharacters[4]}</Text>
+            <Text style={styles.infoText}>{text.exampleCharacters[5]}</Text>
+            <Text style={styles.infoBottomText}>{text.exampleText}</Text>
           </View>
         }
         actionType='press'

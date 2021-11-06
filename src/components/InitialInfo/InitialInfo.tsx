@@ -1,6 +1,7 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
 import {InitialInfoProps} from '../../types/types';
+import text from './../../locales/text.json';
 import {ids, styles} from './InitialInfoStyles';
 
 const InitialInfo: React.FC<InitialInfoProps> = ({
@@ -35,7 +36,7 @@ const InitialInfo: React.FC<InitialInfoProps> = ({
 
         <View style={styles.characterLocationBox}>
           <Text style={styles.characterLocationHeader}>
-            Last known location:
+            {text.lastLocation}
           </Text>
           <Text
             style={styles.characterLocation}
@@ -47,7 +48,7 @@ const InitialInfo: React.FC<InitialInfoProps> = ({
           <Text
             style={styles.characterOriginHeader}
             data-media={ids.characterOriginHeader}>
-            Origin:
+            {text.origin}
           </Text>
           <Text style={styles.characterOrigin} data-media={ids.characterOrigin}>
             {origin}

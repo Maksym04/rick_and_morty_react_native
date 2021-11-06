@@ -41,7 +41,7 @@ const CharactersScreen: React.FC<CharactersScreenProps> = ({navigation}) => {
     getData();
   }, []);
 
-  const statusIcon = (item: Character): JSX.Element | undefined => {
+  const statusIcon = useCallback((item: Character): JSX.Element | undefined => {
     switch (true) {
       case item.status === 'Alive':
         {
@@ -57,7 +57,7 @@ const CharactersScreen: React.FC<CharactersScreenProps> = ({navigation}) => {
         return <View style={styles.redCirle} />;
       }
     }
-  };
+  }, []);
 
   const setFirstPage = useCallback((): void => {
     setCurrentPage(1);

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {View} from 'react-native';
 import {SearchProps} from '../../types/types';
 import SearchButton from './SearchButton/SearchButton';
@@ -21,9 +21,9 @@ const Search: React.FC<SearchProps> = ({name, getInputValue, getSubmit}) => {
     getSubmit();
   };
 
-  const changeActiveSearchState = (): void => {
+  const changeActiveSearchState = useCallback((): void => {
     setIsActiveSearch(!isActiveSearch);
-  };
+  }, [isActiveSearch]);
 
   return (
     <View>

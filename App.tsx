@@ -5,7 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {enableScreens} from 'react-native-screens';
 import {StackParamList, Screen} from './src/types/types';
-import HomeScreen from './src/screens/Home/HomeScreen/HomeScreen';
+import HomeScreen from './src/screens/Home/HomeScreen';
 import CharactersScreen from './src/screens/CharactersScreen/CharactersScreen';
 import CharacterDetailsScreen from './src/screens/CharacterDetailsScreen/CharacterDetailsScreen';
 import GlobalStyles from './GlobalStyles';

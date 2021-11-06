@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {FlatList, TouchableOpacity, View} from 'react-native';
 import {Character, CharactersListProps, Screen} from '../../types/types';
 import InitialInfo from '../InitialInfo/InitialInfo';
@@ -9,6 +9,13 @@ const CharactersList: React.FC<CharactersListProps> = ({
   navigation,
   statusIcon,
 }) => {
+  const goToCharactersDetails = useCallback((item: Character): void => {
+    navigation.navigate({
+      name: Screen.CharacterDetails,
+      params: {character: item},
+    });
+  }, []);
+
   return (
     <FlatList
       data={characters}
@@ -21,12 +28,7 @@ const CharactersList: React.FC<CharactersListProps> = ({
             accessibilityRole='menuitem'
             style={styles.characterBlock}
             data-media={ids.characterBlock}
-            onPress={() => {
-              navigation.navigate({
-                name: Screen.CharacterDetails,
-                params: {character: item},
-              });
-            }}>
+            onPress={() => goToCharactersDetails(item)}>
             <InitialInfo
               image={item.image}
               name={item.name}

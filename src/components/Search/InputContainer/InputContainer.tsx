@@ -5,6 +5,7 @@ import {InputContainerProps} from './../../../types/types';
 import Info from '../Info/Info';
 import Input from '../Input/Input';
 import CloseButton from '../CloseButton/CloseButton';
+import text from './../../../locales/text.json';
 import {ids, styles} from './InputContainerStyles';
 
 const InputContainer: React.FC<InputContainerProps> = ({
@@ -25,7 +26,7 @@ const InputContainer: React.FC<InputContainerProps> = ({
         style={styles.helperText}
         type='error'
         visible={checkFormatError()}>
-        Character names contain only letters and only one space
+        {text.validateSearchText}
       </HelperText>
     </View>
   );
